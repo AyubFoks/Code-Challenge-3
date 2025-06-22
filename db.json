@@ -1,0 +1,18 @@
+{
+  "posts": [
+    {
+      "id": 2,
+      "title": "Second Post",
+      "body": "Another interesting article about web development.",
+      "author": "Jane Smith",
+      "image": "https://picsum.photos/600/400?random=2"
+    },
+    {
+      "title": "How To Display Current Year in Website Footer",
+      "image": "https://foksandfolks.co.ke/wp-content/uploads/2025/06/year_footer.jpg",
+      "body": "1. First, place a placeholder span element where you want to display the current year in your HTML:\n<span id=\"currentYear\"></span>\n\n2. Next, use the following JavaScript code to get the current year and display it in the placeholder\ndocument.addEventListener('DOMContentLoaded', function() { var currentYear = new Date().getFullYear(); document.getElementById('currentYear').textContent = currentYear; });",
+      "author": "aKaranja",
+      "id": 3
+    }
+  ]
+}
