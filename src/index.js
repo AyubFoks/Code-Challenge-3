@@ -1,11 +1,11 @@
-// DOM Elements
+
 const postsList = document.getElementById('postsList');
 const postForm = document.getElementById('postForm');
 const API_URL = 'http://localhost:3000/posts';
 const currentYear = new Date().getFullYear();
 document.getElementById('currentYear').textContent = currentYear;
 
-// Fetch all posts and display them
+
 function fetchPosts() {
   fetch(API_URL)
     .then(response => response.json())
@@ -16,7 +16,7 @@ function fetchPosts() {
     .catch(error => console.error('Error fetching posts:', error));
 }
 
-// Display a single post
+
 let currentPostIndex = 0;
 let postsArray = [];
 
@@ -73,7 +73,7 @@ document.getElementById('prevBtn').addEventListener('click', () => {
   }
 });
 
-// Add a new post
+
 postForm.addEventListener('submit', (e) => {
   e.preventDefault();
   
@@ -97,7 +97,7 @@ postForm.addEventListener('submit', (e) => {
     .catch(error => console.error('Error adding post:', error));
 });
 
-// Delete a post
+
 function deletePost(id) {
   fetch(`${API_URL}/${id}`, {
     method: 'DELETE',
@@ -106,26 +106,22 @@ function deletePost(id) {
     .catch(error => console.error('Error deleting post:', error));
 }
 
-// Edit a post (implementation would be similar to add, but with PUT method)
+
 function editPost(id) {
-  // In a real implementation, you would:
-  // 1. Fetch the post data
-  // 2. Populate the form with it
-  // 3. Change the form submission to do a PUT request instead of POST
+
   console.log(`Edit post with ID: ${id}`);
-  // Example implementation would be similar to the add functionality
-  // but with method: 'PUT' and URL: `${API_URL}/${id}`
+  
 }
 
-// Initial fetch of posts
+
 fetchPosts();
 
-// Display recent posts in sidebar
+
 function displayRecentPosts(posts) {
   const recentPostsContainer = document.getElementById('recentPosts');
   recentPostsContainer.innerHTML = '';
   
-  // Get 5 most recent posts (sorted by id, assuming higher ids are newer)
+  
   const recentPosts = [...posts]
     .sort((a, b) => b.id - a.id)
     .slice(0, 5);
@@ -135,7 +131,8 @@ function displayRecentPosts(posts) {
     postElement.className = 'recent-post';
     postElement.textContent = post.title;
     postElement.addEventListener('click', () => {
-      // When clicked, show this post in the slideshow
+     
+        
       const postIndex = postsArray.findIndex(p => p.id === post.id);
       if (postIndex !== -1) {
         currentPostIndex = postIndex;
@@ -146,7 +143,7 @@ function displayRecentPosts(posts) {
   });
 }
 
-// Search functionality
+
 function setupSearch() {
   const searchInput = document.getElementById('searchInput');
   const searchBtn = document.getElementById('searchBtn');
@@ -199,7 +196,7 @@ function displaySearchResults(results) {
   });
 }
 
-// Update your fetchPosts function to include recent posts display
+
 function fetchPosts() {
   fetch(API_URL)
     .then(response => response.json())
@@ -211,12 +208,12 @@ function fetchPosts() {
         currentPostIndex = 0;
         showPost(currentPostIndex);
       }
-      displayRecentPosts(posts); // Add this line
+      displayRecentPosts(posts); 
     })
     .catch(error => console.error('Error fetching posts:', error));
 }
 
-// Call setupSearch when the page loads
+
 document.addEventListener('DOMContentLoaded', () => {
   fetchPosts();
   setupSearch();
