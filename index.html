@@ -27,15 +27,15 @@
                 <h3>Search Posts</h3>
                 <input type="text" id="searchInput" placeholder="Search by title...">
                 <button id="searchBtn">Search</button>
+                <div id="searchResults"></div>
             </div>
-            <div id="searchResults"></div>
 
             <div class="sidebar-section">
                 <h3>Add New Post</h3>
                 <form id="postForm">
                     <input type="text" id="title" placeholder="Title" required>
-                    <input type="text" id="image" placeholder="Image URL" required>
-                    <textarea id="body" placeholder="Content" required></textarea>
+                    <input type="text" id="image" placeholder="Image URL (optional)">
+                    <textarea id="bodyContent" placeholder="Content" required></textarea>
                     <input type="text" id="author" placeholder="Author" required>
                     <button type="submit">Post Now!</button>
                 </form>

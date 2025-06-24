@@ -50,8 +50,6 @@ main {
     background-color: #f8f9fa;
     padding: 0 20px 20px 20px;
     box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
-    flex: 1;
-    
 }
 .sidebar-section {
     padding-bottom: 10px;
@@ -69,8 +67,7 @@ input[type="text"] {
     color: #343a40;
 }
 
-#postForm #body {
-    margin-top: -100px;
+#postForm #bodyContent {
     height: 100px;
     width: 92%;
     resize: vertical;
@@ -92,6 +89,21 @@ button {
 button:hover {
     background-color: #a300b8;
 }
+
+.recent-post-item,
+.result-link {
+    text-decoration: none;
+    color: #662d91;
+    margin-bottom: 10px;
+}
+
+
+.recent-post-item:hover,
+.result-link:hover {
+    color: #00aeef;
+}
+
+
 
 
 

@@ -1,18 +1,81 @@
 {
   "posts": [
     {
-      "id": 2,
-      "title": "Second Post",
-      "body": "Another interesting article about web development.",
-      "author": "Jane Smith",
-      "image": "https://picsum.photos/600/400?random=2"
-    },
-    {
       "title": "How To Display Current Year in Website Footer",
       "image": "https://foksandfolks.co.ke/wp-content/uploads/2025/06/year_footer.jpg",
-      "body": "1. First, place a placeholder span element where you want to display the current year in your HTML:\n<span id=\"currentYear\"></span>\n\n2. Next, use the following JavaScript code to get the current year and display it in the placeholder\ndocument.addEventListener('DOMContentLoaded', function() { var currentYear = new Date().getFullYear(); document.getElementById('currentYear').textContent = currentYear; });",
+      "bodyContent": "1. First, place a placeholder span element where you want to display the current year in your HTML:\n<span id=\"currentYear\"></span>",
       "author": "aKaranja",
       "id": 3
+    },
+    {
+      "id": 4,
+      "title": "React Hooks Explained",
+      "bodyContent": "React Hooks let you use state and other React features without writing classes. The most common hooks are useState and useEffect.",
+      "author": "devWriter",
+      "image": "https://images.unsplash.com/photo-1633356122544-f134324a6cee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      "id": 5,
+      "title": "CSS Grid vs Flexbox",
+      "bodyContent": "Use CSS Grid for two-dimensional layouts and Flexbox for one-dimensional layouts. Both can work together for complex designs.",
+      "author": "frontendDev",
+      "image": "https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      "id": 6,
+      "title": "Python for Data Science",
+      "bodyContent": "Python's pandas and NumPy libraries are essential for data manipulation. Matplotlib and Seaborn help with data visualization.",
+      "author": "dataScientist",
+      "image": "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      "id": 7,
+      "title": "Responsive Design Tips",
+      "bodyContent": "Always design mobile-first, use relative units like rem/em, and test on multiple devices. Media queries are your best friend.",
+      "author": "uiExpert",
+      "image": "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      "title": "Git Best Practices",
+      "image": "https://images.unsplash.com/photo-1551033406-611cf9a28f67?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
+      "bodyContent": "Commit often, write clear messages, and use branches for new features. Never push directly to main/master.",
+      "author": "aKaranja",
+      "id": 8
+    },
+    {
+      "id": 9,
+      "title": "JavaScript ES6 Features",
+      "bodyContent": "Arrow functions, template literals, and destructuring are game-changers. Let/const provide better scoping than var.",
+      "author": "jsMaster",
+      "image": "https://images.unsplash.com/photo-1579468118864-1b9ea3c0db4a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      "id": 10,
+      "title": "API Security Essentials",
+      "bodyContent": "Always use HTTPS, implement rate limiting, and validate all inputs. JWT tokens are great for authentication.",
+      "author": "securityGuru",
+      "image": "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      "title": "Docker for Developers",
+      "image": "https://images.unsplash.com/photo-1587614382346-4ec70e388b28?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
+      "bodyContent": "Containers package apps with dependencies. Dockerfiles define images, and docker-compose manages multi-container apps.",
+      "author": "aKaranja",
+      "id": 11
+    },
+    {
+      "title": "Git Best Practices",
+      "image": "https://images.unsplash.com/photo-1551033406-611cf9a28f67?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
+      "bodyContent": "Commit often, write clear messages, and use branches for new features. Never push directly to main/master.",
+      "author": "aKaranja",
+      "id": 12
+    },
+    {
+      "title": "Git Best Practices",
+      "image": "https://images.unsplash.com/photo-1551033406-611cf9a28f67?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
+      "bodyContent": "Commit often, write clear messages, and use branches for new features. Never push directly to main/master.",
+      "author": "aKaranja",
+      "id": 13
     }
   ]
 }
