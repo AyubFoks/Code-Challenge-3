@@ -1,21 +1,37 @@
+//Approach - Project breakdown
+    // 1. declare DOM elements
+    // 2. declare global variables
+    // 3. create function to display posts by appending to the DOM
+    // 4. create function to show a specific post (event listeners for nav buttons)
+    // 5. create function to delete a post
+    // 6. create function to edit a post
+    // 7. create function to display recent posts in the sidebar
+    // 8. create function to handle search functionality
+    // 9. create function to fetch posts from the server
+    // 10. create function to handle form submission for both new posts and updates
+// Extras
+    //  current year for footer
+
+
+
+// DOM event listener
+document.addEventListener('DOMContentLoaded', function() {
+  fetchPosts();
+  setupSearch();
+});
+
 // DOM Elements
 const postsList = document.getElementById('postsList');
 const postForm = document.getElementById('postForm');
 const API_URL = 'http://localhost:3000/posts';
 
-// Set current year in footer
-const currentYear = new Date().getFullYear();
-document.getElementById('currentYear').textContent = currentYear;
-
-// Global variables
+// global variables
 let currentPostIndex = 0;
 let postsArray = [];
-let isEditing = false; // Track if we're in edit mode
-let currentEditId = null; // Track which post we're editing
+let isEditing = false;
+let currentEditId = null;
 
-/**
- * Display a single post in the UI
- */
+//display a single post in the UI
 function displayPost(post, index) {
   const postElement = document.createElement('div');
   postElement.className = 'post ' + (index === 0 ? 'active' : '');
@@ -32,9 +48,7 @@ function displayPost(post, index) {
   postsList.appendChild(postElement);
 }
 
-/**
- * Show a specific post by index
- */
+// show post by index
 function showPost(index) {
   const posts = document.querySelectorAll('.post');
   posts.forEach(function(post) {
@@ -45,7 +59,7 @@ function showPost(index) {
   }
 }
 
-// Navigation event listeners
+// nav event listeners
 document.getElementById('nextBtn').addEventListener('click', function() {
   if (postsArray.length > 0) {
     currentPostIndex = (currentPostIndex + 1) % postsArray.length;
@@ -60,9 +74,7 @@ document.getElementById('prevBtn').addEventListener('click', function() {
   }
 });
 
-/**
- * Delete a post from the server
- */
+// delete a post
 function deletePost(id) {
   if (confirm('Are you sure you want to delete this post?')) {
     fetch(API_URL + '/' + id, {
@@ -73,30 +85,26 @@ function deletePost(id) {
   }
 }
 
-/**
- * Prepare the form for editing an existing post
- */
+// editing an existing post
 function editPost(id) {
   const post = postsArray.find(function(p) { return p.id === id; });
   if (!post) return;
 
-  // Set edit mode
+  //edit mode
   isEditing = true;
   currentEditId = id;
 
-  // Fill the form with the post data
+  // new post data
   document.getElementById('title').value = post.title;
   document.getElementById('image').value = post.image;
   document.getElementById('bodyContent').value = post.bodyContent;
   document.getElementById('author').value = post.author;
 
-  // Change button text to indicate edit mode
+  // change button to update
   document.querySelector('button[type="submit"]').textContent = 'Update Post';
 }
 
-/**
- * Display recent posts in the sidebar
- */
+// recent posts
 function displayRecentPosts(posts) {
   const recentPostsContainer = document.getElementById('recentPosts');
   recentPostsContainer.innerHTML = '';
@@ -128,7 +136,7 @@ function displayRecentPosts(posts) {
   recentPostsContainer.appendChild(listContainer);
 }
 
-// Search functionality
+// search
 function displaySearchResults(results) {
   const searchResultsDiv = document.getElementById('searchResults');
   searchResultsDiv.innerHTML = '';
@@ -199,9 +207,7 @@ function setupSearch() {
   });
 }
 
-/**
- * Fetch all posts from the server
- */
+//fetch all posts from .json
 function fetchPosts() {
   fetch(API_URL)
     .then(function(response) { return response.json(); })
@@ -218,9 +224,7 @@ function fetchPosts() {
     .catch(function(error) { console.error('Error fetching posts:', error); });
 }
 
-/**
- * Handle form submission for both new posts and updates
- */
+// submission for new posts and updates
 function handleFormSubmit(e) {
   e.preventDefault();
   
@@ -234,7 +238,7 @@ function handleFormSubmit(e) {
     return;
   }
 
-  // Use default image if none provided
+  //default post image
   const imageUrl = image || 'https://foksandfolks.co.ke/wp-content/uploads/2025/06/image-placeholder@2x-100.jpg';
   
   const method = isEditing ? 'PUT' : 'POST';
@@ -257,7 +261,7 @@ function handleFormSubmit(e) {
       fetchPosts();
       postForm.reset();
       
-      // Reset edit mode
+      // exit edit mode
       if (isEditing) {
         isEditing = false;
         currentEditId = null;
@@ -267,11 +271,10 @@ function handleFormSubmit(e) {
     .catch(function(error) { console.error('Error saving post:', error); });
 }
 
-// Event Listeners
+// submit event listener
 postForm.addEventListener('submit', handleFormSubmit);
 
-// Initialize the app
-document.addEventListener('DOMContentLoaded', function() {
-  fetchPosts();
-  setupSearch();
-});
+// current year for footer
+const currentYear = new Date().getFullYear();
+document.getElementById('currentYear').textContent = currentYear;
+
