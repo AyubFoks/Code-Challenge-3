@@ -10,7 +10,8 @@
     // 9. create function to fetch posts from the server
     // 10. create function to handle form submission for both new posts and updates
 // Extras
-    //  current year for footer
+    // current year for footer
+    // placeholder image
 
 
 
