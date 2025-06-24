@@ -1,12 +1,21 @@
+// DOM Elements
 const postsList = document.getElementById('postsList');
 const postForm = document.getElementById('postForm');
 const API_URL = 'http://localhost:3000/posts';
+
+// Set current year in footer
 const currentYear = new Date().getFullYear();
 document.getElementById('currentYear').textContent = currentYear;
 
+// Global variables
 let currentPostIndex = 0;
 let postsArray = [];
+let isEditing = false; // Track if we're in edit mode
+let currentEditId = null; // Track which post we're editing
 
+/**
+ * Display a single post in the UI
+ */
 function displayPost(post, index) {
   const postElement = document.createElement('div');
   postElement.className = 'post ' + (index === 0 ? 'active' : '');
@@ -23,6 +32,9 @@ function displayPost(post, index) {
   postsList.appendChild(postElement);
 }
 
+/**
+ * Show a specific post by index
+ */
 function showPost(index) {
   const posts = document.querySelectorAll('.post');
   posts.forEach(function(post) {
@@ -33,6 +45,7 @@ function showPost(index) {
   }
 }
 
+// Navigation event listeners
 document.getElementById('nextBtn').addEventListener('click', function() {
   if (postsArray.length > 0) {
     currentPostIndex = (currentPostIndex + 1) % postsArray.length;
@@ -47,44 +60,9 @@ document.getElementById('prevBtn').addEventListener('click', function() {
   }
 });
 
-postForm.addEventListener('submit', function(e) {
-  e.preventDefault();
-  
-  // Get all form values
-  const title = document.getElementById('title').value;
-  const image = document.getElementById('image').value;
-  const bodyContent = document.getElementById('bodyContent').value;
-  const author = document.getElementById('author').value;
-  
-  // Validate required fields
-  if (!title || !bodyContent || !author) {
-    alert('Please fill in all required fields: Title, Content, and Author');
-    return;
-  }
-
-  // If image URL is not provided, use a default placeholder
-  const imageUrl = image || 'https://via.placeholder.com/600x400?text=No+Image';
-  
-  fetch(API_URL, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ 
-      title: title, 
-      image: imageUrl, 
-      bodyContent: bodyContent, 
-      author: author 
-    }),
-  })
-    .then(function(response) { return response.json(); })
-    .then(function() {
-      fetchPosts();
-      postForm.reset();
-    })
-    .catch(function(error) { console.error('Error adding post:', error); });
-});
-
+/**
+ * Delete a post from the server
+ */
 function deletePost(id) {
   if (confirm('Are you sure you want to delete this post?')) {
     fetch(API_URL + '/' + id, {
@@ -95,9 +73,16 @@ function deletePost(id) {
   }
 }
 
+/**
+ * Prepare the form for editing an existing post
+ */
 function editPost(id) {
   const post = postsArray.find(function(p) { return p.id === id; });
   if (!post) return;
+
+  // Set edit mode
+  isEditing = true;
+  currentEditId = id;
 
   // Fill the form with the post data
   document.getElementById('title').value = post.title;
@@ -105,38 +90,13 @@ function editPost(id) {
   document.getElementById('bodyContent').value = post.bodyContent;
   document.getElementById('author').value = post.author;
 
-  // Change the form to update instead of create
-  postForm.onsubmit = function(e) {
-    e.preventDefault();
-    
-    const updatedTitle = document.getElementById('title').value;
-    const updatedImage = document.getElementById('image').value;
-    const updatedBodyContent = document.getElementById('bodyContent').value;
-    const updatedAuthor = document.getElementById('author').value;
-    
-    fetch(API_URL + '/' + id, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ 
-        title: updatedTitle, 
-        image: updatedImage, 
-        bodyContent: updatedBodyContent, 
-        author: updatedAuthor 
-      }),
-    })
-      .then(function(response) { return response.json(); })
-      .then(function() {
-        fetchPosts();
-        postForm.reset();
-        // Reset the form to create new posts
-        postForm.onsubmit = handleFormSubmit;
-      })
-      .catch(function(error) { console.error('Error updating post:', error); });
-  };
+  // Change button text to indicate edit mode
+  document.querySelector('button[type="submit"]').textContent = 'Update Post';
 }
 
+/**
+ * Display recent posts in the sidebar
+ */
 function displayRecentPosts(posts) {
   const recentPostsContainer = document.getElementById('recentPosts');
   recentPostsContainer.innerHTML = '';
@@ -171,29 +131,25 @@ function displayRecentPosts(posts) {
 // Search functionality
 function displaySearchResults(results) {
   const searchResultsDiv = document.getElementById('searchResults');
-  searchResultsDiv.innerHTML = ''; // Clear previous results
+  searchResultsDiv.innerHTML = '';
 
   if (!results || results.length === 0) {
     searchResultsDiv.innerHTML = '<div class="no-results">No matching posts found</div>';
     return;
   }
 
-  // Create unordered list element
   const resultsList = document.createElement('ul');
   resultsList.className = 'results-list';
 
-  // Add each result as a list item
   results.forEach(function(post) {
     const listItem = document.createElement('li');
     listItem.className = 'result-item';
     
-    // Create clickable link for each result
     const resultLink = document.createElement('a');
     resultLink.href = '#';
     resultLink.textContent = post.title;
     resultLink.className = 'result-link';
     
-    // Click handler for navigation
     resultLink.addEventListener('click', function(e) {
       e.preventDefault();
       goToPost(post.id);
@@ -211,9 +167,8 @@ function goToPost(postId) {
   if (postIndex !== -1) {
     currentPostIndex = postIndex;
     showPost(currentPostIndex);
-    document.getElementById('searchInput').value = ''; // Clear search input
-    document.getElementById('searchResults').innerHTML = ''; // Clear results
-    // Smooth scroll to the post
+    document.getElementById('searchInput').value = '';
+    document.getElementById('searchResults').innerHTML = '';
     document.querySelector('.main-content').scrollIntoView({ behavior: 'smooth' });
   }
 }
@@ -243,6 +198,10 @@ function setupSearch() {
     if (e.key === 'Enter') performSearch();
   });
 }
+
+/**
+ * Fetch all posts from the server
+ */
 function fetchPosts() {
   fetch(API_URL)
     .then(function(response) { return response.json(); })
@@ -259,8 +218,10 @@ function fetchPosts() {
     .catch(function(error) { console.error('Error fetching posts:', error); });
 }
 
-// Store the original form handler
-const handleFormSubmit = function(e) {
+/**
+ * Handle form submission for both new posts and updates
+ */
+function handleFormSubmit(e) {
   e.preventDefault();
   
   const title = document.getElementById('title').value;
@@ -268,23 +229,48 @@ const handleFormSubmit = function(e) {
   const bodyContent = document.getElementById('bodyContent').value;
   const author = document.getElementById('author').value;
   
-  fetch(API_URL, {
-    method: 'POST',
+  if (!title || !bodyContent || !author) {
+    alert('Please fill in all required fields: Title, Content, and Author');
+    return;
+  }
+
+  // Use default image if none provided
+  const imageUrl = image || 'https://foksandfolks.co.ke/wp-content/uploads/2025/06/image-placeholder@2x-100.jpg';
+  
+  const method = isEditing ? 'PUT' : 'POST';
+  const url = isEditing ? `${API_URL}/${currentEditId}` : API_URL;
+  
+  fetch(url, {
+    method: method,
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ title, image, bodyContent, author }),
+    body: JSON.stringify({ 
+      title: title, 
+      image: imageUrl, 
+      bodyContent: bodyContent, 
+      author: author 
+    }),
   })
     .then(function(response) { return response.json(); })
     .then(function() {
       fetchPosts();
       postForm.reset();
+      
+      // Reset edit mode
+      if (isEditing) {
+        isEditing = false;
+        currentEditId = null;
+        document.querySelector('button[type="submit"]').textContent = 'Post Now';
+      }
     })
-    .catch(function(error) { console.error('Error adding post:', error); });
-};
+    .catch(function(error) { console.error('Error saving post:', error); });
+}
 
+// Event Listeners
 postForm.addEventListener('submit', handleFormSubmit);
 
+// Initialize the app
 document.addEventListener('DOMContentLoaded', function() {
   fetchPosts();
   setupSearch();

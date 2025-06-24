@@ -1,13 +1,6 @@
 {
   "posts": [
     {
-      "title": "How To Display Current Year in Website Footer",
-      "image": "https://foksandfolks.co.ke/wp-content/uploads/2025/06/year_footer.jpg",
-      "bodyContent": "1. First, place a placeholder span element where you want to display the current year in your HTML:\n<span id=\"currentYear\"></span>",
-      "author": "aKaranja",
-      "id": 3
-    },
-    {
       "id": 4,
       "title": "React Hooks Explained",
       "bodyContent": "React Hooks let you use state and other React features without writing classes. The most common hooks are useState and useEffect.",
@@ -43,11 +36,11 @@
       "id": 8
     },
     {
-      "id": 9,
       "title": "JavaScript ES6 Features",
+      "image": "https://images.unsplash.com/photo-1579468118864-1b9ea3c0db4a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
       "bodyContent": "Arrow functions, template literals, and destructuring are game-changers. Let/const provide better scoping than var.",
-      "author": "jsMaster",
-      "image": "https://images.unsplash.com/photo-1579468118864-1b9ea3c0db4a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
+      "author": "aKaranja",
+      "id": 9
     },
     {
       "id": 10,
@@ -71,11 +64,18 @@
       "id": 12
     },
     {
-      "title": "Git Best Practices",
-      "image": "https://images.unsplash.com/photo-1551033406-611cf9a28f67?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
-      "bodyContent": "Commit often, write clear messages, and use branches for new features. Never push directly to main/master.",
+      "title": "JavaScript ES6 Features",
+      "image": "https://images.unsplash.com/photo-1579468118864-1b9ea3c0db4a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
+      "bodyContent": "Arrow functions, template literals, and destructuring are game-changers. Let/const provide better scoping than var.",
       "author": "aKaranja",
-      "id": 13
+      "id": 14
+    },
+    {
+      "title": "How To Display Current Year in Website Footer",
+      "image": "https://foksandfolks.co.ke/wp-content/uploads/2025/06/year_footer.jpg",
+      "bodyContent": "1. First, place a placeholder span element where you want to display the current year in your HTML:\n<span id=\"currentYear\"></span>",
+      "author": "a Karanja",
+      "id": 15
     }
   ]
 }

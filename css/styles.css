@@ -19,6 +19,18 @@ header {
 .logo img {
     height: 100px;
 }
+@media (max-width: 768px) {
+    .logo img {
+        height: 40px;
+    }
+}
+@media (max-width: 992px) {
+    .logo img {
+        height: 70px;
+    }
+}
+
+
 h1 {
     font-size: 24px;
     color: #343a40;
@@ -91,6 +103,7 @@ button:hover {
 }
 
 .recent-post-item,
+.result-item,
 .result-link {
     text-decoration: none;
     color: #662d91;
@@ -99,6 +112,7 @@ button:hover {
 
 
 .recent-post-item:hover,
+.result-item:hover,
 .result-link:hover {
     color: #00aeef;
 }
@@ -209,11 +223,17 @@ button:hover {
   color: white;
   border-radius: 15px;
 }
+.post-actions button:first-child:hover {
+  background: #02a726;
+}
 
 .post-actions button:last-child {
-  background: #e74c3c;
+  background: #7f8c8d;
   color: white;
     border-radius: 15px;
+}
+.post-actions button:last-child:hover {
+  background: #f51a01;
 }
 
 

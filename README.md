@@ -39,8 +39,7 @@ The goal is to create a simple Blog Post Manager. This uses a local API and impl
 3. Starting the local server:
 
    ```sh
-   npx json-server 
-   --watch db.json
+   npx json-server --watch db.json
    ```
 
 4. Open the index.html
